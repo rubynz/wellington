@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<h1>Companies <span class="count">{{ page.companies | size }}</span></h1>
+
+<ul class="people-list">
+{% for company in page.companies %}
+  <li><a href="/companies/{{ company.slug }}/">{{ company.name }}</a></li>
+{% endfor %}
+</ul>

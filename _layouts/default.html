@@ -59,6 +59,85 @@
       background: #7773;
       margin-bottom: 1rem;
     }
+
+    .talk-list {
+      margin: 0.5rem 0;
+      padding-left: 1.2rem;
+    }
+
+    .talk-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .event-meta {
+      margin-top: 0.5rem;
+      font-size: 0.8em;
+      color: #777;
+    }
+
+    .event-meta .organisers,
+    .event-meta .supporters {
+      display: block;
+    }
+
+    .year-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .year-list li a {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: #7773;
+    }
+
+    .year-list .count {
+      font-size: 0.8em;
+      opacity: 0.6;
+    }
+
+    .year-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .year-nav-btn {
+      padding: 0.3rem 0.8rem;
+      background: #7773;
+    }
+
+    .year-nav-btn.disabled {
+      visibility: hidden;
+    }
+
+    .year-nav-btn:last-child {
+      margin-left: auto;
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.25rem;
+    }
+
+    .people-list {
+      columns: 2;
+      list-style: none;
+      padding: 0;
+    }
+
+    .people-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .person-talks li,
+    .person-organised li {
+      margin-bottom: 0.4rem;
+    }
   </style>
 </head>
 
@@ -66,6 +145,11 @@
 
   <header>
     <h1><a href="/">Ruby Wellington</a></h1>
+    <nav class="site-nav">
+      <a href="/meetups/">Meetups</a>
+      <a href="/people/">People</a>
+      <a href="/companies/">Companies</a>
+    </nav>
   </header>
 
   <main>

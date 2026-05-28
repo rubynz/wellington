@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<h1>{{ page.year }} Meetups</h1>
+
+<nav class="year-nav">
+  {% if page.prev_year %}
+  <a href="/meetups/{{ page.prev_year }}/" class="year-nav-btn">&larr; {{ page.prev_year }}</a>
+  {% else %}
+  <span class="year-nav-btn disabled"></span>
+  {% endif %}
+
+  <a href="/meetups/" class="year-nav-btn">All years</a>
+
+  {% if page.next_year %}
+  <a href="/meetups/{{ page.next_year }}/" class="year-nav-btn">{{ page.next_year }} &rarr;</a>
+  {% else %}
+  <span class="year-nav-btn disabled"></span>
+  {% endif %}
+</nav>
+
+{% for event in page.events %}
+{% include event_summary.html event=event %}
+{% endfor %}

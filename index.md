@@ -4,20 +4,11 @@ layout: default
 
 {% include about.html %}
 
-## Meetups
+## Upcoming & Recent Meetups
 
-{% for event in site.events reversed %}
-<div class="event-summary">
-  <h3>
-    <span class="date">{{ event.date | date: "%b %-d, %Y" }}</span>
-    <a href="{{ event.url }}">{{ event.title }}</a>
-  </h3>
-
-  <div class="time">
-    {{ event.time }}
-    &middot;
-    <a href="https://google.com/maps/search/{{ event.location }}" target="_blank">{{ event.location }}</a>
-  </div>
-  <p>{{ event.content | strip_html | truncatewords: 50 }}</p>
-</div>
+{% assign recent_events = site.events | sort: "date" | reverse | slice: 0, 5 %}
+{% for event in recent_events %}
+{% include event_summary.html event=event %}
 {% endfor %}
+
+[See all meetups →](/meetups/)

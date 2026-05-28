@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<h1>Speakers and Organisers <span class="count">{{ page.people | size }}</span></h1>
+
+<ul class="people-list">
+{% for person in page.people %}
+  <li><a href="/people/{{ person.slug }}/">{{ person.name }} <span class="count">{{ person.total_count }}</span></a></li>
+{% endfor %}
+</ul>
