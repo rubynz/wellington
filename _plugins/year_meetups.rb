@@ -11,7 +11,7 @@ module Jekyll
 
       data["year"]      = year
       data["title"]     = "#{year} Meetups"
-      data["events"]    = events.sort_by { |e| e.date }.reverse
+      data["events"]    = events.sort_by { |e| e.date }
       data["prev_year"] = prev_year
       data["next_year"] = next_year
     end

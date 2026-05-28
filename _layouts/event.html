@@ -1,6 +1,14 @@
 ---
 layout: default
 ---
+{% assign year = page.date | date: "%Y" %}
+
+<nav class="meetup-nav">
+  {% if page.previous %}<a href="{{ page.previous.url }}" class="meetup-nav-btn">← {{ page.previous.date | date: "%b %-d, %Y" }}</a>{% else %}<span class="meetup-nav-btn disabled"></span>{% endif %}
+  <a href="/meetups/{{ year }}/" class="meetup-nav-btn meetup-nav-btn--center">All {{ year }} meetups</a>
+  {% if page.next %}<a href="{{ page.next.url }}" class="meetup-nav-btn meetup-nav-btn--right">{{ page.next.date | date: "%b %-d, %Y" }} →</a>{% else %}<span class="meetup-nav-btn meetup-nav-btn--right disabled"></span>{% endif %}
+</nav>
+
 <h2>
   <span class="date">{{ page.date | date: "%b %-d, %Y" }}</span>
   {{ page.title }}
@@ -17,6 +25,14 @@ layout: default
   {% for talk in page.talks %}
   {% include talk_summary.html talk=talk %}
   {% endfor %}
+</div>
+{% endif %}
+
+{% if page.event_recording_url %}
+<div class="event-recording">
+  <h3>Event recording</h3>
+  {% include video_embed.html url=page.event_recording_url title=page.title %}
+  <a href="{{ page.event_recording_url }}" class="talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
 </div>
 {% endif %}
 
@@ -41,6 +57,12 @@ layout: default
 {% endif %}
 
 {{ content }}
+
+<nav class="meetup-nav meetup-nav--bottom">
+  {% if page.previous %}<a href="{{ page.previous.url }}" class="meetup-nav-btn">← {{ page.previous.date | date: "%b %-d, %Y" }}</a>{% else %}<span class="meetup-nav-btn disabled"></span>{% endif %}
+  <a href="/meetups/{{ year }}/" class="meetup-nav-btn meetup-nav-btn--center">All {{ year }} meetups</a>
+  {% if page.next %}<a href="{{ page.next.url }}" class="meetup-nav-btn meetup-nav-btn--right">{{ page.next.date | date: "%b %-d, %Y" }} →</a>{% else %}<span class="meetup-nav-btn meetup-nav-btn--right disabled"></span>{% endif %}
+</nav>
 
 <footer>
 {% include about.html %}

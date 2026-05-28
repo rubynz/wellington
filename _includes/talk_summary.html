@@ -23,16 +23,7 @@
   <div class="talk-description">{{ talk.description | markdownify }}</div>
   {% endif %}
 
-  {% if talk.recording_url contains "youtube.com" or talk.recording_url contains "youtu.be" %}
-    {% if talk.recording_url contains "youtu.be" %}
-      {% assign yt_id = talk.recording_url | split: "youtu.be/" | last | split: "?" | first %}
-    {% else %}
-      {% assign yt_id = talk.recording_url | split: "v=" | last | split: "&" | first %}
-    {% endif %}
-  <div class="talk-video">
-    <iframe src="https://www.youtube.com/embed/{{ yt_id }}" title="{{ talk.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
-  {% endif %}
+  {% if talk.recording_url %}{% include video_embed.html url=talk.recording_url title=talk.title %}{% endif %}
 
   {% if talk.slide_url or talk.recording_url %}
   <div class="talk-links">
