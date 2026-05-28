@@ -58,6 +58,13 @@ layout: default
 
 {{ content }}
 
+{% if page.original_link or page.discussion %}
+<div class="event-links">
+  {% if page.original_link %}<a href="{{ page.original_link }}" class="talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
+  {% if page.discussion %}<a href="{{ page.discussion }}" class="talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
+</div>
+{% endif %}
+
 <nav class="meetup-nav meetup-nav--bottom">
   {% if page.previous %}<a href="{{ page.previous.url }}" class="meetup-nav-btn">← {{ page.previous.date | date: "%b %-d, %Y" }}</a>{% else %}<span class="meetup-nav-btn disabled"></span>{% endif %}
   <a href="/meetups/{{ year }}/" class="meetup-nav-btn meetup-nav-btn--center">All {{ year }} meetups</a>
