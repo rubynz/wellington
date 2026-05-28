@@ -1,0 +1,43 @@
+{% assign talk = include.talk %}
+<div class="talk-card">
+  <h3 class="talk-title">{{ talk.title }}</h3>
+
+  {% if talk.speakers %}
+  <div class="talk-speakers">
+    {% for speaker in talk.speakers %}
+    <span class="speaker">
+      {% assign person_slug = speaker.name | downcase | replace: " ", "-" %}
+      <a href="/people/{{ person_slug }}/" class="speaker-name">{{ speaker.name }}</a>
+      {% if speaker.title or speaker.company %}
+      <span class="speaker-role">
+        {% if speaker.title %}{{ speaker.title }}{% endif %}{% if speaker.title and speaker.company %} &middot; {% endif %}{% if speaker.company %}<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>{% endif %}
+      </span>
+      {% endif %}
+    </span>
+    {% unless forloop.last %}<span class="speaker-sep">, </span>{% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if talk.description %}
+  <div class="talk-description">{{ talk.description | markdownify }}</div>
+  {% endif %}
+
+  {% if talk.recording_url contains "youtube.com" or talk.recording_url contains "youtu.be" %}
+    {% if talk.recording_url contains "youtu.be" %}
+      {% assign yt_id = talk.recording_url | split: "youtu.be/" | last | split: "?" | first %}
+    {% else %}
+      {% assign yt_id = talk.recording_url | split: "v=" | last | split: "&" | first %}
+    {% endif %}
+  <div class="talk-video">
+    <iframe src="https://www.youtube.com/embed/{{ yt_id }}" title="{{ talk.title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  {% endif %}
+
+  {% if talk.slide_url or talk.recording_url %}
+  <div class="talk-links">
+    {% if talk.slide_url %}<a href="{{ talk.slide_url }}" class="talk-link" target="_blank" rel="noopener">Slides ↗</a>{% endif %}
+    {% if talk.recording_url %}<a href="{{ talk.recording_url }}" class="talk-link" target="_blank" rel="noopener">Recording ↗</a>{% endif %}
+  </div>
+  {% endif %}
+</div>

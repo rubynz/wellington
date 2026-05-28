@@ -12,6 +12,34 @@ layout: default
   <a href="https://google.com/maps/search/{{ page.location }}" target="_blank">{{ page.location }}</a>
 </div>
 
+{% if page.talks %}
+<div class="event-talks">
+  {% for talk in page.talks %}
+  {% include talk_summary.html talk=talk %}
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if page.organisers or page.supporters %}
+<div class="event-meta event-meta--full">
+  {% if page.organisers %}
+  <p class="organisers">Organised by {% for name in page.organisers %}{% unless forloop.first %}, {% endunless %}{% assign org_slug = name | downcase | replace: " ", "-" %}<a href="/people/{{ org_slug }}/">{{ name }}</a>{% endfor %}</p>
+  {% endif %}
+  {% if page.supporters %}
+  <div class="supporters">
+    <p>Supported by</p>
+    <ul class="supporter-list">
+      {% for supporter in page.supporters %}
+      <li>
+        <a href="/companies/{{ supporter.name | downcase | replace: " ", "-" }}/">{{ supporter.name }}</a>{% if supporter.description %} &mdash; {{ supporter.description | strip_newlines }}{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
 {{ content }}
 
 <footer>
