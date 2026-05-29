@@ -34,6 +34,14 @@ layout: default
   {% include video_embed.html url=page.event_recording_url title=page.title %}
   <a href="{{ page.event_recording_url }}" class="talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
 </div>
+{% elsif page.event_recording_urls %}
+<div class="event-recording">
+  <h3>Event recording</h3>
+  {% for url in page.event_recording_urls %}
+  {% include video_embed.html url=url title=page.title %}
+  <a href="{{ url }}" class="talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+  {% endfor %}
+</div>
 {% endif %}
 
 {% if page.organisers or page.supporters %}
