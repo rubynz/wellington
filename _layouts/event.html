@@ -58,10 +58,10 @@ layout: default
 
 {{ content }}
 
-{% if page.original_link or page.discussion %}
+{% if page.original_link or page.original_discussion or page.additional_discussions %}
 <div class="event-links">
   {% if page.original_link %}<a href="{{ page.original_link }}" class="talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
-  {% if page.discussion %}<a href="{{ page.discussion }}" class="talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
+  {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
 </div>
 {% endif %}
 
