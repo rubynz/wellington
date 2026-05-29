@@ -14,7 +14,7 @@ $color-speakers-dark: #aaa;
 $color-surface:     #7773;       // translucent grey used for cards / pills
 $color-surface-border: #9993;
 
-$color-bg-dark:     #141414;
+$color-bg-dark:     #120905;
 $color-text-dark:   rgb(197, 209, 222);
 
 $font-size-base:    14pt;
@@ -48,6 +48,26 @@ footer {
   opacity: 0.8;
   padding: 1em;
   font-size: smaller;
+}
+
+header {
+  border-radius: 2rem;
+  height: 280px;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-blend-mode: multiply;
+  background-image: url('/assets/images/header.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logo {
+    margin: auto 0;
+  }
+
+  .site-nav {
+    margin-bottom: 1rem;
+  }
 }
 
 // ─── Dark mode ────────────────────────────────────────────────────────────────
