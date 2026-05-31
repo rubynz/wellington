@@ -2,14 +2,14 @@ future: true
 collections:
   events:
     output: true
-    permalink: /events/:path/
+    permalink: /meetups/:path/
 
 defaults:
   - scope:
       path: ""
       type: "events"
     values:
-      layout: "event"
+      layout: "meetup"
 
 exclude:
   - CNAME

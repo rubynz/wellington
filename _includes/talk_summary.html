@@ -27,8 +27,8 @@
 
   {% if talk.slide_url or talk.recording_url %}
   <div class="talk-links">
-    {% if talk.slide_url %}<a href="{{ talk.slide_url }}" class="talk-link" target="_blank" rel="noopener">Slides ↗</a>{% endif %}
-    {% if talk.recording_url %}<a href="{{ talk.recording_url }}" class="talk-link" target="_blank" rel="noopener">Recording ↗</a>{% endif %}
+    {% if talk.slide_url %}<a href="{{ talk.slide_url }}" class="btn talk-link" target="_blank" rel="noopener">Slides ↗</a>{% endif %}
+    {% if talk.recording_url %}<a href="{{ talk.recording_url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>{% endif %}
   </div>
   {% endif %}
 </div>

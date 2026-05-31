@@ -3,10 +3,12 @@ layout: default
 ---
 {% assign year = page.date | date: "%Y" %}
 
-<nav class="meetup-nav">
-  {% if page.previous %}<a href="{{ page.previous.url }}" class="meetup-nav-btn">← {{ page.previous.date | date: "%b %-d, %Y" }}</a>{% else %}<span class="meetup-nav-btn disabled"></span>{% endif %}
-  <a href="/meetups/{{ year }}/" class="meetup-nav-btn meetup-nav-btn--center">All {{ year }} meetups</a>
-  {% if page.next %}<a href="{{ page.next.url }}" class="meetup-nav-btn meetup-nav-btn--right">{{ page.next.date | date: "%b %-d, %Y" }} →</a>{% else %}<span class="meetup-nav-btn meetup-nav-btn--right disabled"></span>{% endif %}
+<nav class="page-nav">
+  <a href="/meetups/{{ year }}/" class="btn back">{{ year }} Meetups</a>
+  <div class="group">
+    {% if page.previous %}<a href="{{ page.previous.url }}" class="btn page-nav--previous">←</a>{% else %}<span class="btn page-nav--previous disabled">←</span>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url }}" class="btn page-nav--next">→</a>{% else %}<span class="btn page-nav--next disabled">→</span>{% endif %}
+  </div>
 </nav>
 
 <h2>
@@ -32,14 +34,14 @@ layout: default
 <div class="event-recording">
   <h3>Event recording</h3>
   {% include video_embed.html url=page.event_recording_url title=page.title %}
-  <a href="{{ page.event_recording_url }}" class="talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+  <a href="{{ page.event_recording_url }}" class="btn talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
 </div>
 {% elsif page.event_recording_urls %}
 <div class="event-recording">
   <h3>Event recording</h3>
   {% for url in page.event_recording_urls %}
   {% include video_embed.html url=url title=page.title %}
-  <a href="{{ url }}" class="talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+  <a href="{{ url }}" class="btn talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
   {% endfor %}
 </div>
 {% endif %}
@@ -68,16 +70,10 @@ layout: default
 
 {% if page.original_link or page.original_discussion or page.additional_discussions %}
 <div class="event-links">
-  {% if page.original_link %}<a href="{{ page.original_link }}" class="talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
-  {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
+  {% if page.original_link %}<a href="{{ page.original_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
+  {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
 </div>
 {% endif %}
-
-<nav class="meetup-nav meetup-nav--bottom">
-  {% if page.previous %}<a href="{{ page.previous.url }}" class="meetup-nav-btn">← {{ page.previous.date | date: "%b %-d, %Y" }}</a>{% else %}<span class="meetup-nav-btn disabled"></span>{% endif %}
-  <a href="/meetups/{{ year }}/" class="meetup-nav-btn meetup-nav-btn--center">All {{ year }} meetups</a>
-  {% if page.next %}<a href="{{ page.next.url }}" class="meetup-nav-btn meetup-nav-btn--right">{{ page.next.date | date: "%b %-d, %Y" }} →</a>{% else %}<span class="meetup-nav-btn meetup-nav-btn--right disabled"></span>{% endif %}
-</nav>
 
 <footer>
 {% include about.html %}

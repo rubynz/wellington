@@ -11,10 +11,12 @@ $color-link-dark:   #e14037;
 $color-speakers:    #555;
 $color-speakers-dark: #aaa;
 
-$color-surface:     #7773;       // translucent grey used for cards / pills
+$color-surface:     rgba(241, 241, 241, 0.8);
+$color-surface-dark: rgba(98, 80, 80, 0.2);
 $color-surface-border: #9993;
 
-$color-bg-dark:     #120905;
+$color-bg-light:    #ffece4;
+$color-bg-dark:     #1e1210;
 $color-text-dark:   rgb(197, 209, 222);
 
 $font-size-base:    14pt;
@@ -31,6 +33,7 @@ body {
   margin: 0 auto;
   color: $color-text;
   padding: 1rem;
+  background-color: $color-bg-light;
 }
 
 a {
@@ -38,9 +41,29 @@ a {
   text-decoration: none;
 }
 
+h1, h2, h3 {
+  font-weight: normal;
+
+  .count {
+    font-size: 0.7em;
+    opacity: 0.6;
+  }
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
 h2,
 h3 {
   margin-bottom: 0;
+}
+
+.content {
+  background-color: white;
+  padding: 20px 40px;
+  border-radius: 2rem;
+  margin: 0.5rem 0;
 }
 
 footer {
@@ -53,38 +76,18 @@ footer {
 header {
   border-radius: 2rem;
   height: 280px;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: multiply;
   background-image: url('/assets/images/header.jpg');
   background-size: cover;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-
-  .logo {
-    margin: auto 0;
-  }
+  position: relative;
 
   .site-nav {
-    margin-bottom: 1rem;
-  }
-}
-
-// ─── Dark mode ────────────────────────────────────────────────────────────────
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: $color-bg-dark;
-    color: $color-text-dark;
-  }
-
-  a {
-    color: $color-link-dark;
-  }
-
-  .talk-speakers,
-  .event-meta--full {
-    color: $color-muted-dark;
+    position: absolute;
+    bottom: 1rem;
   }
 }
 
@@ -94,9 +97,33 @@ header {
   background: $color-surface;
 }
 
-%pill {
-  @extend %surface;
-  padding: 0.3rem 0.8rem;
+// ─── Button ───────────────────────────────────────────────────────────────────
+
+.btn {
+  background: white;
+  color: $color-text;
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.85em;
+  display: inline-block;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: black;
+    color: $color-text-dark;
+  }
+}
+
+// buttons inside a surface context use surface colour
+.content .btn {
+  background: $color-surface;
+
+  @media (prefers-color-scheme: dark) {
+    background: $color-surface-dark;
+  }
 }
 
 // ─── Muted text ───────────────────────────────────────────────────────────────
@@ -115,23 +142,35 @@ header {
 
 .site-nav {
   display: flex;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-top: 0.25rem;
+
+  a {
+    background: $color-bg-light;
+    color: $color-text;
+    padding: 0.3rem 0.9rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: bold;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      color: $color-text-dark;
+    }
+  }
 }
 
-// ─── Year list (homepage / index) ─────────────────────────────────────────────
+// ─── Entity list ─────────────────────────────────────────────
 
-.year-list {
+.entity-list {
   list-style: none;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-
-  li a {
-    @extend %pill;
-    display: inline-block;
-  }
+  gap: 0.8rem;
 
   .count {
     font-size: 0.8em;
@@ -139,58 +178,33 @@ header {
   }
 }
 
-// ─── Year nav (year page) ─────────────────────────────────────────────────────
+// ─── Page nav (back, prev / next) ─────────────────────────────────────────────────
 
-.year-nav {
+.page-nav {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
 
-  &-btn {
-    @extend %pill;
-
+  .btn {
     &.disabled {
       visibility: hidden;
     }
+  }
 
-    &:last-child {
-      margin-left: auto;
-    }
+  .group {
+    margin-left: auto;
+    display: flex;
+    gap: 0.2rem;
   }
 }
 
-// ─── Meetup nav (prev / next) ─────────────────────────────────────────────────
+.page-nav--previous {
+  margin-left: auto;
+}
 
-.meetup-nav {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-
-  &--bottom {
-    margin-top: 1.5rem;
-    margin-bottom: 0;
-  }
-
-  &-btn {
-    @extend %pill;
-
-    &.disabled {
-      visibility: hidden;
-    }
-
-    &--center {
-      margin: 0 auto;
-
-      // when a centre button is followed by a right button, cancel auto margin
-      & ~ .meetup-nav-btn--right {
-        margin-left: 0;
-      }
-    }
-
-    &--right {
-      margin-left: auto;
-    }
-  }
+.page-nav--next {
+  margin-left: auto;
 }
 
 // ─── Event summary card (year listing) ────────────────────────────────────────
@@ -269,9 +283,7 @@ header {
   }
 
   .talk-link {
-    @extend %surface;
     font-size: 0.85em;
-    padding: 0.2rem 0.6rem;
     border: 1px solid $color-surface-border;
   }
 
@@ -320,19 +332,40 @@ header {
 
 // ─── People pages ─────────────────────────────────────────────────────────────
 
-.people-list {
-  columns: 2;
-  list-style: none;
-  padding: 0;
-
-  li {
-    margin-bottom: 0.25rem;
-  }
-}
-
 .person-talks,
 .person-organised {
   li {
     margin-bottom: 0.4rem;
+  }
+}
+
+// ─── Dark mode ────────────────────────────────────────────────────────────────
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: $color-bg-dark;
+    color: $color-text-dark;
+  }
+
+  a {
+    color: $color-link-dark;
+  }
+
+  .talk-speakers,
+  .event-meta--full {
+    color: $color-muted-dark;
+  }
+
+  .content {
+    background-color: black;
+  }
+
+  .talk-card,
+  .event-summary {
+    background: $color-surface-dark;
+  }
+
+  .site-nav a {
+    background: $color-bg-dark;
   }
 }

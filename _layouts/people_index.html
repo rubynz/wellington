@@ -3,8 +3,11 @@ layout: default
 ---
 <h1>Speakers and Organisers <span class="count">{{ page.people | size }}</span></h1>
 
-<ul class="people-list">
-{% for person in page.people %}
-  <li><a href="/people/{{ person.slug }}/">{{ person.name }} <span class="count">{{ person.total_count }}</span></a></li>
-{% endfor %}
-</ul>
+<div class="content">
+  <p>These are the people who have spoken at or organised Ruby Wellington events.</p>
+  <ul class="entity-list">
+  {% for person in page.people %}
+    <li><a href="/people/{{ person.slug }}/" class="btn">{{ person.name }} <span class="count">{{ person.total_count }}</span></a></li>
+  {% endfor %}
+  </ul>
+</div>

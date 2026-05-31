@@ -5,25 +5,30 @@ layout: default
 
 {% if page.supported.size > 0 %}
 <h2>Supported events <span class="count">{{ page.supported | size }}</span></h2>
-<ul class="person-organised">
-  {% for event in page.supported %}
-  <li>
-    <a href="{{ event.url }}">{{ event.title }}</a>
-    <span class="date">&mdash; {{ event.date | date: "%b %-d, %Y" }}</span>
-  </li>
-  {% endfor %}
-</ul>
+
+<div class="content">
+  <ul class="person-organised">
+    {% for event in page.supported %}
+    <li>
+      <a href="{{ event.url }}">{{ event.title }}</a>
+      <span class="date">&mdash; {{ event.date | date: "%b %-d, %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endif %}
 
 {% if page.staff_talks.size > 0 %}
 <h2>Staff talks <span class="count">{{ page.staff_talks | size }}</span></h2>
-<ul class="person-talks">
-  {% for item in page.staff_talks %}
-  <li>
-    <a href="{{ item.event.url }}">{{ item.talk.title }}</a>
+<div class="content">
+  <ul class="person-talks">
+    {% for item in page.staff_talks %}
+    <li>
+      <a href="{{ item.event.url }}">{{ item.talk.title }}</a>
     &mdash; {{ item.speaker.name }}
     <span class="date">&mdash; {{ item.event.date | date: "%b %-d, %Y" }}</span>
-  </li>
-  {% endfor %}
-</ul>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 {% endif %}
