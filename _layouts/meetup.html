@@ -46,6 +46,12 @@ layout: default
 </div>
 {% endif %}
 
+{% if page.notes %}
+<div class="event-notes">
+  Notes: {{ page.notes }}
+</div>
+{% endif %}
+
 {% if page.organisers or page.supporters %}
 <div class="event-meta event-meta--full">
   {% if page.organisers %}
