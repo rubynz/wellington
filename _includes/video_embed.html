@@ -6,7 +6,7 @@
   {% else %}
     {% assign yt_id = url | split: "v=" | last | split: "&" | first %}
   {% endif %}
-<div class="talk-video">
+<div class="video-embed">
   <iframe src="https://www.youtube.com/embed/{{ yt_id }}" title="{{ title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 {% endif %}

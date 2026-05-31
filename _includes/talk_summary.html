@@ -1,21 +1,27 @@
 {% assign talk = include.talk %}
-<div class="talk-card">
+<div class="content talk-card">
   <h3 class="talk-title">{{ talk.title }}</h3>
 
   {% if talk.speakers %}
   <div class="talk-speakers">
-    {% for speaker in talk.speakers %}
-    <span class="speaker">
-      {% assign person_slug = speaker.name | downcase | replace: " ", "-" %}
-      <a href="/people/{{ person_slug }}/" class="speaker-name">{{ speaker.name }}</a>
-      {% if speaker.title or speaker.company %}
-      <span class="speaker-role">
-        {% if speaker.title %}{{ speaker.title }}{% endif %}{% if speaker.title and speaker.company %} &middot; {% endif %}{% if speaker.company %}<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>{% endif %}
+    {% if talk.speakers.size > 1 %}<ul>{% endif %}
+      {% for speaker in talk.speakers %}
+      {% if talk.speakers.size > 1 %}<li>{% endif %}
+      <span class="speaker">
+        {% assign person_slug = speaker.name | downcase | replace: " ", "-" %}
+        <a href="/people/{{ person_slug }}/" class="speaker-name">{{ speaker.name }}</a>
+        {% if speaker.title or speaker.company %}
+        <span class="speaker-role">
+          —
+          {% if speaker.title %}{{ speaker.title }}{% endif %}
+          {% if speaker.title and speaker.company %} at {% endif %}
+          {% if speaker.company %}<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>{% endif %}
+        </span>
+        {% endif %}
       </span>
-      {% endif %}
-    </span>
-    {% unless forloop.last %}<span class="speaker-sep">, </span>{% endunless %}
+      {% if talk.speakers.size > 1 %}</li>{% endif %}
     {% endfor %}
+    {% if talk.speakers.size > 1 %}</ul>{% endif %}
   </div>
   {% endif %}
 

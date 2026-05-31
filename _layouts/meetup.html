@@ -11,18 +11,13 @@ layout: default
   </div>
 </nav>
 
-<h2>
-  <span class="date">{{ page.date | date: "%b %-d, %Y" }}</span>
-  {{ page.title }}
-</h2>
-
-<div class="time">
-  {{ page.time }}
-  &middot;
-  <a href="https://google.com/maps/search/{{ page.location }}" target="_blank">{{ page.location }}</a>
-</div>
+<h1>{{ page.title }}
+  <div class="subtitle">{{ page.time }} {{ page.date | date: "%b %-d, %Y" }}</div>
+</h1>
 
 {% if page.talks %}
+
+<h2>Talks</h2>
 <div class="event-talks">
   {% for talk in page.talks %}
   {% include talk_summary.html talk=talk %}
@@ -30,57 +25,77 @@ layout: default
 </div>
 {% endif %}
 
-{% if page.event_recording_url %}
-<div class="event-recording">
-  <h3>Event recording</h3>
-  {% include video_embed.html url=page.event_recording_url title=page.title %}
-  <a href="{{ page.event_recording_url }}" class="btn talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
-</div>
-{% elsif page.event_recording_urls %}
-<div class="event-recording">
-  <h3>Event recording</h3>
-  {% for url in page.event_recording_urls %}
-  {% include video_embed.html url=url title=page.title %}
-  <a href="{{ url }}" class="btn talk-link" target="_blank" rel="noopener">Watch on YouTube ↗</a>
-  {% endfor %}
-</div>
-{% endif %}
+<h2>Details</h2>
+<div class="content">
+  <ul class="meetup-details">
+    {% if page.location %}
+    <li>
+      <div class="detail-heading">Location</div>
+      <a href="https://google.com/maps/search/{{ page.location }}" target="_blank">{{ page.location }}</a>
+    </li>
+    {% endif %}
 
-{% if page.notes %}
-<div class="event-notes">
-  Notes: {{ page.notes }}
-</div>
-{% endif %}
-
-{% if page.organisers or page.supporters %}
-<div class="event-meta event-meta--full">
-  {% if page.organisers %}
-  <p class="organisers">Organised by {% for name in page.organisers %}{% unless forloop.first %}, {% endunless %}{% assign org_slug = name | downcase | replace: " ", "-" %}<a href="/people/{{ org_slug }}/">{{ name }}</a>{% endfor %}</p>
-  {% endif %}
-  {% if page.supporters %}
-  <div class="supporters">
-    <p>Supported by</p>
-    <ul class="supporter-list">
-      {% for supporter in page.supporters %}
-      <li>
+    {% if page.supporters %}
+    <li>
+      <div class="detail-heading">Supported by</div>
+      {% if page.supporters.size == 1 %}
+        {% assign supporter = page.supporters.first %}
         <a href="/companies/{{ supporter.name | downcase | replace: " ", "-" }}/">{{ supporter.name }}</a>{% if supporter.description %} &mdash; {{ supporter.description | strip_newlines }}{% endif %}
-      </li>
-      {% endfor %}
-    </ul>
+      {% else %}
+        <ul>
+          {% for supporter in page.supporters %}
+          <li>
+            <a href="/companies/{{ supporter.name | downcase | replace: " ", "-" }}/">{{ supporter.name }}</a>{% if supporter.description %} &mdash; {{ supporter.description | strip_newlines }}{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+    {% endif %}
+
+    {% if page.organisers or page.supporters %}
+    <li>
+      <div class="detail-heading">Organised by</div>
+      {% if page.organisers %}
+        {% for name in page.organisers %}{% unless forloop.first %}, {% endunless %}{% assign org_slug = name | downcase | replace: " ", "-" %}<a href="/people/{{ org_slug }}/">{{ name }}</a>{% endfor %}
+      {% endif %}
+    </li>
+    {% endif %}
+
+    {% if page.notes %}
+    <li>
+      <div class="detail-heading">Notes</div>
+      {{ page.notes }}
+    </li>
+    {% endif %}
+  </ul>
+
+  {% if page.original_link or page.original_discussion %}
+  <div class="event-links">
+    {% if page.original_link %}<a href="{{ page.original_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
+    {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
   </div>
   {% endif %}
 </div>
+
+{% if page.event_recording_url or page.event_recording_urls %}
+<h2>Event Recording</h2>
+
+  <div class="content">
+    {% if page.event_recording_url %}
+    {% include video_embed.html url=page.event_recording_url title=page.title %}
+    <a href="{{ page.event_recording_url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>
+    {% elsif page.event_recording_urls %}
+      {% for url in page.event_recording_urls %}
+      {% include video_embed.html url=url title=page.title %}
+      <a href="{{ url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>
+      <br>
+      {% endfor %}
+    {% endif %}
+  </div>
 {% endif %}
 
-{{ content }}
-
-{% if page.original_link or page.original_discussion or page.additional_discussions %}
-<div class="event-links">
-  {% if page.original_link %}<a href="{{ page.original_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
-  {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
+<h2>Description</h2>
+<div class="content">
+  {{ content }}
 </div>
-{% endif %}
-
-<footer>
-{% include about.html %}
-</footer>
