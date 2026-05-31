@@ -1,38 +1,31 @@
 {% assign event = include.event %}
-<div class="content">
-  <h3>
-    <span class="date">{{ event.date | date: "%b %-d, %Y" }}</span>
-    <a href="{{ event.url }}">{{ event.title }}</a>
-  </h3>
-
-  <div class="time">
-    {{ event.time }}
-    &middot;
-    <a href="https://google.com/maps/search/{{ event.location }}" target="_blank">{{ event.location }}</a>
-  </div>
-
-  {% if event.talks %}
-  <ul class="talk-list">
-    {% for talk in event.talks %}
-    <li>
-      <strong>{{ talk.title }}</strong>
-      {% if talk.speakers %}
-      &mdash;
-      {% for speaker in talk.speakers %}{% unless forloop.first %}, {% endunless %}{% assign person_slug = speaker.name | downcase | replace: " ", "-" %}<a href="/people/{{ person_slug }}/">{{ speaker.name }}</a>{% if speaker.company %} (<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>){% endif %}{% endfor %}
+  <div class="content event-summary">
+    <span class="event-title">
+      <a href="{{ event.url }}">{{ event.title }}</a>
+      <br />
+      <span class="event-time">{{ event.time }} {{ event.date | date: "%b %-d, %Y" }}</span>
+      {% if event.location %}
+      <br />
+      <span class="event-location">
+        <a href="https://google.com/maps/search/{{ event.location }}" target="_blank">{{ event.location }}</a>
+      </span>
       {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+    </span>
 
-  {% if event.organisers or event.supporters %}
-  <div class="event-meta">
-    {% if event.organisers %}
-    <span class="organisers">Organised by {% for name in event.organisers %}{% unless forloop.first %}, {% endunless %}{% assign org_slug = name | downcase | replace: " ", "-" %}<a href="/people/{{ org_slug }}/">{{ name }}</a>{% endfor %}</span>
-    {% endif %}
-    {% if event.supporters %}
-    <span class="supporters">Supported by {% for supporter in event.supporters %}{% unless forloop.first %}, {% endunless %}<a href="/companies/{{ supporter.name | downcase | replace: " ", "-" }}/">{{ supporter.name }}</a>{% endfor %}</span>
-    {% endif %}
+    {% if event.talks %}
+    <div class="event-talks">
+      <strong>Talks</strong>
+      <ul class="talk-list">
+        {% for talk in event.talks %}
+        <li>
+          {{ talk.title }}
+          {% if talk.speakers %}
+          &mdash;
+          {% for speaker in talk.speakers %}{% unless forloop.first %}, {% endunless %}{% assign person_slug = speaker.name | downcase | replace: " ", "-" %}<a href="/people/{{ person_slug }}/">{{ speaker.name }}</a>{% if speaker.company %} (<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>){% endif %}{% endfor %}
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
   </div>
-  {% endif %}
-</div>

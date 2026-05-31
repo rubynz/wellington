@@ -6,8 +6,8 @@
 $color-text:        #272727;
 $color-muted:       #777;
 $color-muted-dark:  #aaa;
-$color-link:        #ca1d00;
-$color-link-dark:   #e14037;
+$color-link:        #972727;
+$color-link-dark:   #ffa4a4;
 $color-speakers:    #555;
 $color-speakers-dark: #aaa;
 
@@ -64,6 +64,7 @@ h3 {
   padding: 20px 40px;
   border-radius: 2rem;
   margin: 0.5rem 0;
+  margin-bottom: 30px;
 }
 
 footer {
@@ -125,18 +126,6 @@ header {
     background: $color-surface-dark;
   }
 }
-
-// ─── Muted text ───────────────────────────────────────────────────────────────
-
-// .time,
-// .date,
-// .event-meta {
-//   color: $color-muted;
-// }
-
-// .time {
-//   font-size: 0.8em;
-// }
 
 // ─── Site nav ─────────────────────────────────────────────────────────────────
 
@@ -210,26 +199,26 @@ header {
 // ─── Event summary card (year listing) ────────────────────────────────────────
 
 .event-summary {
-  @extend %surface;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  .event-title {
+    margin-top: 0;
+    margin-bottom: 0.3rem;
+    font-size: 1.2em;
 
-  .talk-list {
-    margin: 0.5rem 0;
-    padding-left: 1.2rem;
+    a {
+      color: black;
+    }
 
-    li {
-      margin-bottom: 0.25rem;
+    .event-time, .event-location {
+      font-size: 0.7em;
+      opacity: 0.6;
     }
   }
 
-  .event-meta {
-    margin-top: 0.5rem;
-    font-size: 0.8em;
-
-    .organisers,
-    .supporters {
-      display: block;
+  .event-talks {
+    margin-top: 10px;
+    ul {
+      padding-left: 20px;
+      margin-top: 0px;
     }
   }
 }
@@ -260,8 +249,6 @@ ul.meetup-details {
     padding-left: 20px;
     margin: 0;
   }
-
-  margin-bottom: 30px;
 }
 
 .video-embed {
@@ -386,12 +373,17 @@ ul.meetup-details {
     background-color: black;
   }
 
-  .talk-card,
-  .event-summary {
-    background: $color-surface-dark;
-  }
-
   .site-nav a {
     background: $color-bg-dark;
   }
+
+  .event-summary {
+    .event-title {
+
+      a {
+        color: white;
+      }
+    }
+  }
 }
+
