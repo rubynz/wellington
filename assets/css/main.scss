@@ -146,6 +146,16 @@ header {
       opacity: 0.7;
     }
 
+    &.active {
+      background: $color-text;
+      color: $color-bg-light;
+
+      @media (prefers-color-scheme: dark) {
+        background: $color-text-dark;
+        color: $color-bg-dark;
+      }
+    }
+
     @media (prefers-color-scheme: dark) {
       color: $color-text-dark;
     }

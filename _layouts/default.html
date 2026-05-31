@@ -17,11 +17,11 @@
       </a>
     </div>
     <nav class="site-nav">
-      <a href="/">Overview</a>
-      <a href="/recordings/">Recordings</a>
-      <a href="/meetups/">Meetups</a>
-      <a href="/people/">People</a>
-      <a href="/companies/">Companies</a>
+      <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Overview</a>
+      <a href="/recordings/" {% if page.url contains "/recordings" %}class="active"{% endif %}>Recordings</a>
+      <a href="/meetups/" {% if page.url contains "/meetups" %}class="active"{% endif %}>Meetups</a>
+      <a href="/people/" {% if page.url contains "/people" %}class="active"{% endif %}>People</a>
+      <a href="/companies/" {% if page.url contains "/companies" %}class="active"{% endif %}>Companies</a>
     </nav>
   </header>
 

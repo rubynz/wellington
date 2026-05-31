@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Overview
 ---
 
 <h2>Overview</h2>
