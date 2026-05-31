@@ -1,0 +1,13 @@
+{% assign event = include.event %}
+<div class="content">
+  {% if event.event_recording_url %}
+  {% include video_embed.html url=event.event_recording_url title=event.title %}
+  <a href="{{ event.event_recording_url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>
+  {% elsif event.event_recording_urls %}
+    {% for url in event.event_recording_urls %}
+    {% include video_embed.html url=url title=event.title %}
+    <a href="{{ url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>
+    <br>
+    {% endfor %}
+  {% endif %}
+</div>

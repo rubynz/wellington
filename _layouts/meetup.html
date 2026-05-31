@@ -27,18 +27,7 @@ layout: default
 
 {% if page.event_recording_url or page.event_recording_urls %}
 <h2>Recording</h2>
-<div class="content">
-  {% if page.event_recording_url %}
-  {% include video_embed.html url=page.event_recording_url title=page.title %}
-  <a href="{{ page.event_recording_url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>
-  {% elsif page.event_recording_urls %}
-    {% for url in page.event_recording_urls %}
-    {% include video_embed.html url=url title=page.title %}
-    <a href="{{ url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>
-    <br>
-    {% endfor %}
-  {% endif %}
-</div>
+{% include event_recordings.html event=page %}
 {% endif %}
 
 <h2>Details</h2>

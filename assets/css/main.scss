@@ -223,6 +223,16 @@ header {
   }
 }
 
+// ─── Recordings page ──────────────────────────────────────────────────────────
+
+.recorded-event {
+  h2 {
+    a {
+      color: black;
+    }
+  }
+}
+
 // ─── Event detail page ────────────────────────────────────────────────────────
 
 ul.meetup-details {
@@ -265,56 +275,6 @@ ul.meetup-details {
     height: 100%;
   }
 }
-//   .talk-speakers {
-//     font-size: 0.9em;
-//     margin-bottom: 0.6rem;
-//     color: $color-speakers;
-
-//     .speaker-name {
-//       font-weight: bold;
-//     }
-
-//     .speaker-role {
-//       font-style: italic;
-//     }
-//   }
-
-//   .talk-description {
-//     margin: 0.6rem 0;
-//     font-size: 0.95em;
-
-//     p {
-//       margin: 0;
-//     }
-//   }
-
-//   .talk-links {
-//     display: flex;
-//     gap: 0.6rem;
-//     margin-top: 0.75rem;
-//     flex-wrap: wrap;
-//   }
-
-//   .talk-link {
-//     font-size: 0.85em;
-//     border: 1px solid $color-surface-border;
-//   }
-
-//   .talk-video {
-//     position: relative;
-//     padding-bottom: 56.25%;
-//     height: 0;
-//     margin: 0.75rem 0;
-
-//     iframe {
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       width: 100%;
-//       height: 100%;
-//     }
-//   }
-// }
 
 .event-recording {
   margin-top: 1.5rem;
@@ -375,6 +335,14 @@ ul.meetup-details {
 
   .site-nav a {
     background: $color-bg-dark;
+  }
+
+  .recorded-event {
+    h2 {
+      a {
+        color: white;
+      }
+    }
   }
 
   .event-summary {
