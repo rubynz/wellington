@@ -232,7 +232,11 @@ header {
       color: $color-title-link;
     }
 
-    .event-time, .event-location {
+    .event-time {
+      font-size: 0.7em;
+    }
+
+    .event-time.past, .event-location {
       font-size: 0.7em;
       opacity: 0.6;
     }
@@ -258,6 +262,34 @@ header {
 }
 
 // ─── Event detail page ────────────────────────────────────────────────────────
+
+.title-with-action {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+
+  .rsvp-btn {
+    margin-left: auto;
+    font-size: 0.55em;
+    white-space: nowrap;
+    background-color: $color-link;
+    color: white;
+  }
+}
+
+.alert {
+  background-color: $color-link;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: $radius-pill;
+  font-size: 0.9em;
+  margin: 1rem 0;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
 
 ul.meetup-details {
   padding-left: 0;
