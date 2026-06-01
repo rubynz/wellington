@@ -9,7 +9,8 @@ module Jekyll
       upcoming = all.select { |e| e.data["upcoming"] }
       past     = all.reject { |e| e.data["upcoming"] }.reverse
 
-      next_event = upcoming.find { |e| e.data["announced"] }
+      # Prefer the next announced event, but fall back to the next upcoming event
+      next_event = upcoming.find { |e| e.data["announced"] } || upcoming.first
 
       site.config["next_event"]      = next_event
       site.config["upcoming_events"] = upcoming

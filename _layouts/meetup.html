@@ -21,20 +21,8 @@ layout: default
   <div class="subtitle">{{ page.time }} {{ page.date | date: "%A, %b %-d, %Y" }}</div>
 </h1>
 
-<h2>Details</h2>
-<div class="content">
-  {% include event_details.html event=page %}
-
-  {% if page.meetup_link or page.original_discussion %}
-  <div class="event-links">
-    {% if page.meetup_link %}<a href="{{ page.meetup_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
-    {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
-  </div>
-  {% endif %}
-</div>
-
 {% if page.talks %}
-<h2>Talks</h2>
+<h2>Talk{% if page.talks.size > 1 %}s{% endif %}</h2>
 <div class="event-talks">
   {% for talk in page.talks %}
   {% include talk_summary.html talk=talk %}
@@ -53,6 +41,18 @@ layout: default
   {{ content }}
 </div>
 {% endif %}
+
+<h2>Details</h2>
+<div class="content">
+  {% include event_details.html event=page %}
+
+  {% if page.meetup_link or page.original_discussion %}
+  <div class="event-links">
+    {% if page.meetup_link %}<a href="{{ page.meetup_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
+    {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
+  </div>
+  {% endif %}
+</div>
 
 {% if page.legacy != true %}
 <h2>About Ruby Wellington</h2>
