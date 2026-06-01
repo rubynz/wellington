@@ -3,7 +3,7 @@
   <span class="event-title">
     <a href="{{ event.url }}">{{ event.title }}</a>
     <br />
-    <span class="event-time">{{ event.time }} {{ event.date | date: "%b %-d, %Y" }}</span>
+    <span class="event-time">{{ event.time }} {{ event.date | date: "%A, %b %-d, %Y" }}</span>
     {% if event.location %}
     <br />
     <span class="event-location">

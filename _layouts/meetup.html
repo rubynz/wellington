@@ -12,31 +12,39 @@ layout: default
 </nav>
 
 <h1>{{ page.title }}
-  <div class="subtitle">{{ page.time }} {{ page.date | date: "%b %-d, %Y" }}</div>
+  <div class="subtitle">{{ page.time }} {{ page.date | date: "%A, %b %-d, %Y" }}</div>
 </h1>
-
-{% if page.talks %}
-
-<h2>Talks</h2>
-<div class="event-talks">
-  {% for talk in page.talks %}
-  {% include talk_summary.html talk=talk %}
-  {% endfor %}
-</div>
-{% endif %}
-
-{% if page.event_recording_url or page.event_recording_urls %}
-<h2>Recording</h2>
-{% include event_recordings.html event=page %}
-{% endif %}
 
 <h2>Details</h2>
 <div class="content">
+  {{ page.introduction | markdownify }}
+
   <ul class="meetup-details">
+    {% if page.schedule %}
+    <li>
+      <div class="detail-heading">Schedule</div>
+      <ul>
+        {% for item in page.schedule %}
+        <li>
+          {% if item.when %}<strong>{{ item.when }}</strong>{% endif %}
+          {{ item.what }}
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endif %}
+
     {% if page.location %}
     <li>
       <div class="detail-heading">Location</div>
       <a href="https://google.com/maps/search/{{ page.location }}" target="_blank">{{ page.location }}</a>
+    </li>
+    {% endif %}
+
+    {% if page.access %}
+    <li>
+      <div class="detail-heading">Access</div>
+      {{ page.access }}
     </li>
     {% endif %}
 
@@ -45,12 +53,12 @@ layout: default
       <div class="detail-heading">Supported by</div>
       {% if page.supporters.size == 1 %}
         {% assign supporter = page.supporters.first %}
-        <a href="/companies/{{ supporter.name | downcase | replace: " ", "-" }}/">{{ supporter.name }}</a>{% if supporter.description %} &mdash; {{ supporter.description | strip_newlines }}{% endif %}
+        {% include supporter.html supporter=supporter %}
       {% else %}
         <ul>
           {% for supporter in page.supporters %}
           <li>
-            <a href="/companies/{{ supporter.name | downcase | replace: " ", "-" }}/">{{ supporter.name }}</a>{% if supporter.description %} &mdash; {{ supporter.description | strip_newlines }}{% endif %}
+            {% include supporter.html supporter=supporter %}
           </li>
           {% endfor %}
         </ul>
@@ -75,15 +83,40 @@ layout: default
     {% endif %}
   </ul>
 
-  {% if page.original_link or page.original_discussion %}
+  {% if page.meetup_link or page.original_discussion %}
   <div class="event-links">
-    {% if page.original_link %}<a href="{{ page.original_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
+    {% if page.meetup_link %}<a href="{{ page.meetup_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
     {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
   </div>
   {% endif %}
 </div>
 
+
+{% if page.talks %}
+<h2>Talks</h2>
+<div class="event-talks">
+  {% for talk in page.talks %}
+  {% include talk_summary.html talk=talk %}
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if page.event_recording_url or page.event_recording_urls %}
+<h2>Recording</h2>
+{% include event_recordings.html event=page %}
+{% endif %}
+
+{% if page.legacy %}
 <h2>Description</h2>
 <div class="content">
   {{ content }}
 </div>
+{% endif %}
+
+{% if page.legacy != true %}
+<h2>About Ruby Wellington</h2>
+<div class="content">
+  {% include about_summary.html %}
+  {% include code_of_conduct.html %}
+</div>
+{% endif %}

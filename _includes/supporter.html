@@ -1,0 +1,5 @@
+{% assign supporter = include.supporter %}
+<a href="/companies/{{ supporter.name | downcase | replace: " ", "-" }}/">{{ supporter.name }}</a>{% if supporter.description %}{{ supporter.description | strip_newlines | markdownify }}{% endif %}
+{% if supporter.url %}
+  <a href="{{ supporter.url }}" class="btn" target="_blank" rel="noopener">{{ supporter.name }} Website ↗</a>
+{% endif %}

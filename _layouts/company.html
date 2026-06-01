@@ -11,7 +11,7 @@ layout: default
     {% for event in page.supported %}
     <li>
       <a href="{{ event.url }}">{{ event.title }}</a>
-      <span class="date">&mdash; {{ event.date | date: "%b %-d, %Y" }}</span>
+      <span class="date">&mdash; {{ event.date | date: "%A, %b %-d, %Y" }}</span>
     </li>
     {% endfor %}
   </ul>
@@ -26,7 +26,7 @@ layout: default
     <li>
       <a href="{{ item.event.url }}">{{ item.talk.title }}</a>
     &mdash; {{ item.speaker.name }}
-    <span class="date">&mdash; {{ item.event.date | date: "%b %-d, %Y" }}</span>
+    <span class="date">&mdash; {{ item.event.date | date: "%A, %b %-d, %Y" }}</span>
     </li>
     {% endfor %}
   </ul>
