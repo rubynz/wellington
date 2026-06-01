@@ -1,4 +1,5 @@
 future: true
+url: "https://wellington.ruby.nz"
 collections:
   events:
     output: true
