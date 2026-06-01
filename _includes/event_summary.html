@@ -1,0 +1,37 @@
+{% assign event = include.event %}
+<div class="content event-summary">
+  <span class="event-title">
+    <a href="{{ event.url }}">{{ event.title }}</a>
+    <br />
+    <span class="event-time{% unless event.upcoming %} past{% endunless %}">{{ event.time }} {{ event.date | date: "%A, %b %-d, %Y" }}</span>
+    {% if event.location %}
+    <br />
+    <span class="event-location">
+      <a href="https://google.com/maps/search/{{ event.location }}" target="_blank">{{ event.location }}</a>
+    </span>
+    {% endif %}
+  </span>
+
+  {% if event.talks %}
+  <div class="event-talks">
+    <strong>Talks</strong>
+    <ul class="talk-list">
+      {% for talk in event.talks %}
+      <li>
+        {{ talk.title }}
+        {% if talk.speakers %}
+        &mdash;
+        {% for speaker in talk.speakers %}{% unless forloop.first %}, {% endunless %}{% assign person_slug = speaker.name | downcase | replace: " ", "-" %}<a href="/people/{{ person_slug }}/">{{ speaker.name }}</a>{% if speaker.company %} (<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>){% endif %}{% endfor %}
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  {% if event.upcoming and event.announced %}
+  <div class="event-actions">
+    <a href="{{ event.url }}" class="btn btn-primary">Details &amp; RSVP →</a>
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,40 @@
+{% assign talk = include.talk %}
+<div class="content talk-card">
+  <h3 class="talk-title">{{ talk.title }}</h3>
+
+  {% if talk.speakers %}
+  <div class="talk-speakers">
+    {% if talk.speakers.size > 1 %}<ul>{% endif %}
+      {% for speaker in talk.speakers %}
+      {% if talk.speakers.size > 1 %}<li>{% endif %}
+      <span class="speaker">
+        {% assign person_slug = speaker.name | downcase | replace: " ", "-" %}
+        <a href="/people/{{ person_slug }}/" class="speaker-name">{{ speaker.name }}</a>
+        {% if speaker.title or speaker.company %}
+        <span class="speaker-role">
+          —
+          {% if speaker.title %}{{ speaker.title }}{% endif %}
+          {% if speaker.title and speaker.company %} at {% endif %}
+          {% if speaker.company %}<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>{% endif %}
+        </span>
+        {% endif %}
+      </span>
+      {% if talk.speakers.size > 1 %}</li>{% endif %}
+    {% endfor %}
+    {% if talk.speakers.size > 1 %}</ul>{% endif %}
+  </div>
+  {% endif %}
+
+  {% if talk.description %}
+  <div class="talk-description">{{ talk.description | markdownify }}</div>
+  {% endif %}
+
+  {% if talk.recording_url %}{% include video_embed.html url=talk.recording_url title=talk.title %}{% endif %}
+
+  {% if talk.slide_url or talk.recording_url %}
+  <div class="talk-links">
+    {% if talk.slide_url %}<a href="{{ talk.slide_url }}" class="btn talk-link" target="_blank" rel="noopener">Slides ↗</a>{% endif %}
+    {% if talk.recording_url %}<a href="{{ talk.recording_url }}" class="btn talk-link" target="_blank" rel="noopener">Recording ↗</a>{% endif %}
+  </div>
+  {% endif %}
+</div>

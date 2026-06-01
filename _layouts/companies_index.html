@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<h1>Companies <span class="count">{{ page.companies | size }}</span></h1>
+
+<div class="content">
+  <p>These are the companies that have supported Ruby Wellington events or had staff speak.</p>
+  <ul class="entity-list">
+  {% for company in page.companies %}
+    <li><a href="/companies/{{ company.slug }}/" class="btn">{{ company.name }}</a></li>
+  {% endfor %}
+  </ul>
+</div>

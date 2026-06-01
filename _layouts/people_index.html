@@ -1,0 +1,27 @@
+---
+layout: default
+---
+<h1>People</h1>
+
+{% assign speakers = page.people | where_exp: "person", "person.talk_count > 0" %}
+{% assign organisers = page.people | where_exp: "person", "person.organised_count > 0" %}
+
+<h2>Speakers <span class="count">{{ speakers | size }}</span></h2>
+<div class="content">
+  <p>These are the people who have spoken at Ruby Wellington events.</p>
+  <ul class="entity-list">
+  {% for person in speakers %}
+    <li><a href="/people/{{ person.slug }}/" class="btn">{{ person.name }} <span class="count">{{ person.talk_count }}</span></a></li>
+  {% endfor %}
+  </ul>
+</div>
+
+<h2>Organisers <span class="count">{{ organisers | size }}</span></h2>
+<div class="content">
+  <p>These are the people who have organised Ruby Wellington events.</p>
+  <ul class="entity-list">
+  {% for person in organisers %}
+    <li><a href="/people/{{ person.slug }}/" class="btn">{{ person.name }} <span class="count">{{ person.organised_count }}</span></a></li>
+  {% endfor %}
+  </ul>
+</div>

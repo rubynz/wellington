@@ -1,0 +1,12 @@
+{% assign url = include.url %}
+{% assign title = include.title | default: "" %}
+{% if url contains "youtube.com" or url contains "youtu.be" %}
+  {% if url contains "youtu.be" %}
+    {% assign yt_id = url | split: "youtu.be/" | last | split: "?" | first %}
+  {% else %}
+    {% assign yt_id = url | split: "v=" | last | split: "&" | first %}
+  {% endif %}
+<div class="video-embed">
+  <iframe src="https://www.youtube.com/embed/{{ yt_id }}" title="{{ title }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+{% endif %}

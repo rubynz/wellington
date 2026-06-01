@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<h1>{{ page.person_name }}</h1>
+
+{% if page.talks.size > 0 %}
+<h2>Talks <span class="count">{{ page.talks | size }}</span></h2>
+<div class="content">
+  <ul class="person-talks">
+    {% for item in page.talks %}
+    <li>
+      <a href="{{ item.event.url }}">{{ item.talk.title }}</a>
+      <span class="date">&mdash; {{ item.event.date | date: "%A, %b %-d, %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if page.organised.size > 0 %}
+<h2>Organised <span class="count">{{ page.organised | size }}</span></h2>
+<div class="content">
+  <ul class="person-organised">
+    {% for event in page.organised %}
+    <li>
+      <a href="{{ event.url }}">{{ event.title }}</a>
+      <span class="date">&mdash; {{ event.date | date: "%A, %b %-d, %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

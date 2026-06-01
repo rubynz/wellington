@@ -1,0 +1,22 @@
+future: true
+url: "https://wellington.ruby.nz"
+collections:
+  events:
+    output: true
+    permalink: /meetups/:path/
+
+defaults:
+  - scope:
+      path: ""
+      type: "events"
+    values:
+      layout: "meetup"
+
+exclude:
+  - CNAME
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - .ruby-version
+

@@ -1,0 +1,63 @@
+---
+layout: default
+---
+{% assign year = page.date | date: "%Y" %}
+
+<nav class="page-nav">
+  <a href="/meetups/{{ year }}/" class="btn back">{{ year }} Meetups</a>
+  <div class="group">
+    {% if page.previous %}<a href="{{ page.previous.url }}" class="btn page-nav--previous">←</a>{% else %}<span class="btn page-nav--previous disabled">←</span>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url }}" class="btn page-nav--next">→</a>{% else %}<span class="btn page-nav--next disabled">→</span>{% endif %}
+  </div>
+</nav>
+
+<h1>
+  <span class="title-with-action">
+    {{ page.title }}
+    {% if page.meetup_link and page.announced and page.upcoming %}
+    <a href="{{ page.meetup_link }}" class="btn btn-primary rsvp-btn">RSVP on Meetup →</a>
+    {% endif %}
+  </span>
+  <div class="subtitle">{{ page.time }} {{ page.date | date: "%A, %b %-d, %Y" }}</div>
+</h1>
+
+<h2>Details</h2>
+<div class="content">
+  {% include event_details.html event=page %}
+
+  {% if page.meetup_link or page.original_discussion %}
+  <div class="event-links">
+    {% if page.meetup_link %}<a href="{{ page.meetup_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
+    {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
+  </div>
+  {% endif %}
+</div>
+
+{% if page.talks %}
+<h2>Talks</h2>
+<div class="event-talks">
+  {% for talk in page.talks %}
+  {% include talk_summary.html talk=talk %}
+  {% endfor %}
+</div>
+{% endif %}
+
+{% if page.event_recording_url or page.event_recording_urls %}
+<h2>Recording</h2>
+{% include event_recordings.html event=page %}
+{% endif %}
+
+{% if page.legacy %}
+<h2>Description</h2>
+<div class="content">
+  {{ content }}
+</div>
+{% endif %}
+
+{% if page.legacy != true %}
+<h2>About Ruby Wellington</h2>
+<div class="content">
+  {% include about_summary.html %}
+  {% include code_of_conduct.html %}
+</div>
+{% endif %}

@@ -1,0 +1,34 @@
+---
+layout: default
+---
+<h1>{{ page.company_name }}</h1>
+
+{% if page.supported.size > 0 %}
+<h2>Supported events <span class="count">{{ page.supported | size }}</span></h2>
+
+<div class="content">
+  <ul class="person-organised">
+    {% for event in page.supported %}
+    <li>
+      <a href="{{ event.url }}">{{ event.title }}</a>
+      <span class="date">&mdash; {{ event.date | date: "%A, %b %-d, %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if page.staff_talks.size > 0 %}
+<h2>Staff talks <span class="count">{{ page.staff_talks | size }}</span></h2>
+<div class="content">
+  <ul class="person-talks">
+    {% for item in page.staff_talks %}
+    <li>
+      <a href="{{ item.event.url }}">{{ item.talk.title }}</a>
+    &mdash; {{ item.speaker.name }}
+    <span class="date">&mdash; {{ item.event.date | date: "%A, %b %-d, %Y" }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

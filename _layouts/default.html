@@ -1,0 +1,57 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | Ruby Wellington</title>
+
+  {% assign page_url = page.url | absolute_url %}
+  {% assign og_title = page.title | append: " | Ruby Wellington" %}
+  {% if page.description %}
+    {% assign og_description = page.description %}
+  {% else %}
+    {% assign og_description = "Ruby Wellington is a Wellington, New Zealand tech meetup for Ruby and Rails developers." %}
+  {% endif %}
+  {% assign og_image = "/assets/images/share.jpg" | absolute_url %}
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page_url }}">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ og_description }}">
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:site_name" content="Ruby Wellington">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="{{ page_url }}">
+  <meta name="twitter:title" content="{{ og_title }}">
+  <meta name="twitter:description" content="{{ og_description }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+
+  <link rel="canonical" href="{{ page_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="/">
+        <img src="{{ '/assets/images/logo.svg' | relative_url }}" alt="Ruby Wellington" />
+      </a>
+    </div>
+    <nav class="site-nav">
+      <a href="/" {% if page.url == "/" %}class="active"{% endif %}>Overview</a>
+      <a href="/recordings/" {% if page.url contains "/recordings" %}class="active"{% endif %}>Recordings</a>
+      <a href="/meetups/" {% if page.url contains "/meetups" %}class="active"{% endif %}>Meetups</a>
+      <a href="/people/" {% if page.url contains "/people" %}class="active"{% endif %}>People</a>
+      <a href="/companies/" {% if page.url contains "/companies" %}class="active"{% endif %}>Companies</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+  </div>
+</body>
+
+</html>
