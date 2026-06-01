@@ -15,7 +15,7 @@ layout: default
   <span class="title-with-action">
     {{ page.title }}
     {% if page.meetup_link and page.announced and page.upcoming %}
-    <a href="{{ page.meetup_link }}" class="btn rsvp-btn">RSVP on Meetup →</a>
+    <a href="{{ page.meetup_link }}" class="btn btn-primary rsvp-btn">RSVP on Meetup →</a>
     {% endif %}
   </span>
   <div class="subtitle">{{ page.time }} {{ page.date | date: "%A, %b %-d, %Y" }}</div>
@@ -23,82 +23,12 @@ layout: default
 
 <h2>Details</h2>
 <div class="content">
-  {{ page.introduction | markdownify }}
-
-  <ul class="meetup-details">
-    {% if page.schedule %}
-    <li>
-      <div class="detail-heading">Schedule</div>
-      <ul>
-        {% for item in page.schedule %}
-        <li>
-          {% if item.when %}<strong>{{ item.when }}</strong>{% endif %}
-          {{ item.what }}
-        </li>
-        {% endfor %}
-      </ul>
-    </li>
-    {% endif %}
-
-    {% if page.location %}
-    <li>
-      <div class="detail-heading">Location</div>
-      <a href="https://google.com/maps/search/{{ page.location }}" target="_blank">{{ page.location }}</a>
-    </li>
-    {% endif %}
-
-    {% if page.access %}
-    <li>
-      <div class="detail-heading">Access</div>
-      {{ page.access }}
-    </li>
-    {% endif %}
-
-    {% if page.supporters %}
-    <li>
-      <div class="detail-heading">Supported by</div>
-      {% if page.supporters.size == 1 %}
-        {% assign supporter = page.supporters.first %}
-        {% include supporter.html supporter=supporter %}
-      {% else %}
-        <ul>
-          {% for supporter in page.supporters %}
-          <li>
-            {% include supporter.html supporter=supporter %}
-          </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </li>
-    {% endif %}
-
-    {% if page.organisers or page.supporters %}
-    <li>
-      <div class="detail-heading">Organised by</div>
-      {% if page.organisers %}
-        {% for name in page.organisers %}{% unless forloop.first %}, {% endunless %}{% assign org_slug = name | downcase | replace: " ", "-" %}<a href="/people/{{ org_slug }}/">{{ name }}</a>{% endfor %}
-      {% endif %}
-    </li>
-    {% endif %}
-
-    {% if page.notes %}
-    <li>
-      <div class="detail-heading">Notes</div>
-      {{ page.notes }}
-    </li>
-    {% endif %}
-  </ul>
+  {% include event_details.html event=page %}
 
   {% if page.meetup_link or page.original_discussion %}
   <div class="event-links">
     {% if page.meetup_link %}<a href="{{ page.meetup_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
     {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
-  </div>
-  {% endif %}
-
-  {% if page.meetup_link and page.announced and page.upcoming %}
-  <div class="alert">
-    <a href="{{ page.meetup_link }}">If you'd like to attend, please RSVP on Meetup so we know how many people to expect →</a>
   </div>
   {% endif %}
 </div>

@@ -242,6 +242,10 @@ header {
     }
   }
 
+  .event-actions {
+    margin-top: 0.8rem;
+  }
+
   .event-talks {
     margin-top: 10px;
     ul {
@@ -268,9 +272,14 @@ header {
   align-items: baseline;
   gap: 0.5rem;
 
-  .rsvp-btn {
-    margin-left: auto;
+  .btn {
     font-size: 0.55em;
+  }
+}
+
+.btn {
+  &.btn-primary {
+    margin-left: auto;
     white-space: nowrap;
     background-color: $color-link;
     color: white;

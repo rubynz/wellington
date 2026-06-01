@@ -28,4 +28,10 @@
     </ul>
   </div>
   {% endif %}
+
+  {% if event.upcoming and event.announced %}
+  <div class="event-actions">
+    <a href="{{ event.url }}" class="btn btn-primary">Details &amp; RSVP →</a>
+  </div>
+  {% endif %}
 </div>
