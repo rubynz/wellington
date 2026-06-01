@@ -1,0 +1,19 @@
+{% assign page_url = page.url | absolute_url %}
+{% assign og_image = "/assets/images/share.jpg" | absolute_url %}
+
+{% if page.date and page.time %}
+  {% assign formatted_date = page.date | date: "%A, %b %-d, %Y" %}
+  {% assign og_title = page.title | append: " — " | append: page.time | append: " " | append: formatted_date | append: " | Ruby Wellington" %}
+  {% assign talk_titles = page.talks | map: "title" | join: ", " %}
+  {% if talk_titles != "" %}
+    {% assign og_description = "Talks: " | append: talk_titles | append: ". Ruby Wellington meetup at " | append: page.location %}
+  {% else %}
+    {% assign og_description = "Ruby Wellington meetup on " | append: formatted_date | append: " at " | append: page.location %}
+  {% endif %}
+{% elsif page.description %}
+  {% assign og_title = page.title | append: " | Ruby Wellington" %}
+  {% assign og_description = page.description %}
+{% else %}
+  {% assign og_title = page.title | append: " | Ruby Wellington" %}
+  {% assign og_description = "Ruby Wellington is a Wellington, New Zealand tech meetup for Ruby and Rails developers." %}
+{% endif %}
