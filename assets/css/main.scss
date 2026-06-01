@@ -8,20 +8,21 @@ $color-muted:       #777;
 $color-muted-dark:  #aaa;
 $color-link:        #972727;
 $color-link-dark:   #ffa4a4;
-$color-speakers:    #555;
-$color-speakers-dark: #aaa;
 
 $color-surface:     rgba(241, 241, 241, 0.8);
 $color-surface-dark: rgba(98, 80, 80, 0.2);
-$color-surface-border: #9993;
 
 $color-bg-light:    #fce6e6;
 $color-bg-dark:     #1b0a07;
 $color-text-dark:   rgb(197, 209, 222);
 
+$color-title-link:      black;
+$color-title-link-dark: white;
+
 $font-size-base:    14pt;
 $line-height-base:  1.5;
 $max-width:         960px;
+$radius-pill:       2rem;
 
 // ─── Base ─────────────────────────────────────────────────────────────────────
 
@@ -62,20 +63,13 @@ h3 {
 .content {
   background-color: white;
   padding: 20px 40px;
-  border-radius: 2rem;
+  border-radius: $radius-pill;
   margin: 0.5rem 0;
   margin-bottom: 30px;
 }
 
-footer {
-  background: $color-surface;
-  opacity: 0.8;
-  padding: 1em;
-  font-size: smaller;
-}
-
 header {
-  border-radius: 2rem;
+  border-radius: $radius-pill;
   height: 280px;
   background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: multiply;
@@ -119,19 +113,13 @@ header {
   }
 }
 
-// ─── Shared pill / card surface ───────────────────────────────────────────────
-
-%surface {
-  background: $color-surface;
-}
-
 // ─── Button ───────────────────────────────────────────────────────────────────
 
 .btn {
   background: white;
   color: $color-text;
   padding: 0.4rem 0.8rem;
-  border-radius: 2rem;
+  border-radius: $radius-pill;
   font-size: 0.85em;
   display: inline-block;
 
@@ -167,7 +155,7 @@ header {
     background: $color-bg-light;
     color: $color-text;
     padding: 0.3rem 0.9rem;
-    border-radius: 2rem;
+    border-radius: $radius-pill;
     font-size: 0.85rem;
     font-weight: bold;
 
@@ -232,14 +220,6 @@ header {
   }
 }
 
-.page-nav--previous {
-  margin-left: auto;
-}
-
-.page-nav--next {
-  margin-left: auto;
-}
-
 // ─── Event summary card (year listing) ────────────────────────────────────────
 
 .event-summary {
@@ -249,7 +229,7 @@ header {
     font-size: 1.2em;
 
     a {
-      color: black;
+      color: $color-title-link;
     }
 
     .event-time, .event-location {
@@ -272,7 +252,7 @@ header {
 .recorded-event {
   h2 {
     a {
-      color: black;
+      color: $color-title-link;
     }
   }
 }
@@ -320,33 +300,6 @@ ul.meetup-details {
   }
 }
 
-.event-recording {
-  margin-top: 1.5rem;
-
-  h3 {
-    margin-bottom: 0.5rem;
-  }
-}
-
-.event-meta--full {
-  margin-top: 1.5rem;
-  font-size: 0.9em;
-  color: $color-speakers;
-
-  p {
-    margin: 0 0 0.4rem;
-  }
-
-  .supporter-list {
-    margin: 0.3rem 0 0;
-    padding-left: 1.2rem;
-
-    li {
-      margin-bottom: 0.3rem;
-    }
-  }
-}
-
 // ─── People pages ─────────────────────────────────────────────────────────────
 
 .person-talks,
@@ -368,8 +321,7 @@ ul.meetup-details {
     color: $color-link-dark;
   }
 
-  .talk-speakers,
-  .event-meta--full {
+  .talk-speakers {
     color: $color-muted-dark;
   }
 
@@ -384,16 +336,15 @@ ul.meetup-details {
   .recorded-event {
     h2 {
       a {
-        color: white;
+        color: $color-title-link-dark;
       }
     }
   }
 
   .event-summary {
     .event-title {
-
       a {
-        color: white;
+        color: $color-title-link-dark;
       }
     }
   }

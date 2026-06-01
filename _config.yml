@@ -13,5 +13,9 @@ defaults:
 
 exclude:
   - CNAME
-  - readme.md
-  - meetup_import
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - .ruby-version
+
