@@ -20,6 +20,8 @@ To add a new meetup, create a new file in the `_events/{year}` directory. The fi
 
 We rely heavily on event frontmatter metadata to build a catalog of meetups, speakers, companies and organisers. For modern events, the frontmatter is used heavily in the rendering of the meetup page to avoid common boilerplate.
 
+The homepage button opens a Luma calendar events embed configured with `luma_calendar_id` in `_config.yml`; `luma_calendar_url` is the direct-link fallback. The events embed does not provide a calendar follow button.
+
 ### Event flags
 
 | Field | Type | Description |

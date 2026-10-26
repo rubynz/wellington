@@ -1,5 +1,7 @@
 future: true
 url: "https://wellington.ruby.nz"
+luma_calendar_url: "https://luma.com/ruby-wellington"
+luma_calendar_id: "cal-3Hc7b1mmHMQnF7Q"
 collections:
   events:
     output: true
@@ -19,4 +21,3 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - .ruby-version
-

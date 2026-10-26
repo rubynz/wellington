@@ -142,6 +142,57 @@ header {
   }
 }
 
+.luma-subscribe-dialog {
+  width: min(700px, calc(100% - 2rem));
+  max-width: none;
+  max-height: 90vh;
+  padding: 1rem;
+  border: 0;
+  border-radius: 1rem;
+  color: $color-text;
+  background: white;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.3);
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  iframe {
+    display: block;
+    width: 100%;
+    height: min(450px, 65vh);
+    border: 1px solid rgba(191, 203, 218, 0.53);
+    border-radius: 4px;
+  }
+
+  p {
+    margin-bottom: 0;
+    text-align: right;
+    font-size: 0.8em;
+  }
+}
+
+.luma-subscribe-dialog__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.luma-subscribe-dialog__close {
+  border: 0;
+  padding: 0.2rem 0.5rem;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 // ─── Site nav ─────────────────────────────────────────────────────────────────
 
 .site-nav {
@@ -370,6 +421,11 @@ ul.meetup-details {
     background-color: black;
   }
 
+  .luma-subscribe-dialog {
+    color: $color-text-dark;
+    background: $color-bg-dark;
+  }
+
   .site-nav a {
     background: $color-bg-dark;
   }
@@ -390,4 +446,3 @@ ul.meetup-details {
     }
   }
 }
-
