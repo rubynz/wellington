@@ -25,7 +25,7 @@ We rely heavily on event frontmatter metadata to build a catalog of meetups, spe
 | Field | Type | Description |
 |---|---|---|
 | `legacy` | boolean | Shows body as "Description"; hides "About Ruby Wellington" section. This is only intended for old imported meetups |
-| `upcoming` | boolean | Marks event as upcoming; shows RSVP button and "Details & RSVP" in summary |
+| `upcoming` | boolean | Marks event as upcoming; shows "Details & RSVP" in summary |
 | `announced` | boolean | Combined with `upcoming`, enables the RSVP button on the event title |
 
 ### Event metadata
@@ -45,6 +45,7 @@ We rely heavily on event frontmatter metadata to build a catalog of meetups, spe
 | Field | Type | Description |
 |---|---|---|
 | `meetup_link` | string | URL to Meetup.com event page |
+| `luma_id` | string | Luma event ID; enables the inline Luma RSVP checkout modal for announced upcoming events |
 | `original_discussion` | string | URL to Google Groups discussion thread |
 
 ### Schedule

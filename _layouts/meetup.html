@@ -14,7 +14,9 @@ layout: default
 <h1>
   <span class="title-with-action">
     {{ page.title }}
-    {% if page.meetup_link and page.announced and page.upcoming %}
+    {% if page.luma_id and page.announced and page.upcoming %}
+    <a href="https://lu.ma/event/{{ page.luma_id | escape }}" class="luma-checkout--button btn btn-primary rsvp-btn" data-luma-action="checkout" data-luma-event-id="{{ page.luma_id | escape }}" target="_blank" rel="noopener">RSVP via Luma →</a>
+    {% elsif page.meetup_link and page.announced and page.upcoming %}
     <a href="{{ page.meetup_link }}" class="btn btn-primary rsvp-btn">RSVP on Meetup →</a>
     {% endif %}
   </span>
@@ -49,6 +51,7 @@ layout: default
   {% if page.meetup_link or page.original_discussion %}
   <div class="event-links">
     {% if page.meetup_link %}<a href="{{ page.meetup_link }}" class="btn talk-link" target="_blank" rel="noopener">Meetup page ↗</a>{% endif %}
+    {% if page.luma_id %}<a href="https://lu.ma/event/{{ page.luma_id | escape }}" class="btn talk-link" target="_blank" rel="noopener">Luma page ↗</a>{% endif %}
     {% if page.original_discussion %}<a href="{{ page.original_discussion }}" class="btn talk-link" target="_blank" rel="noopener">Discussion ↗</a>{% endif %}
   </div>
   {% endif %}
@@ -60,4 +63,8 @@ layout: default
   {% include about_summary.html %}
   {% include code_of_conduct.html %}
 </div>
+{% endif %}
+
+{% if page.luma_id and page.announced and page.upcoming %}
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
 {% endif %}
