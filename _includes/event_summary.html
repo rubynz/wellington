@@ -18,10 +18,15 @@
     <ul class="talk-list">
       {% for talk in event.talks %}
       <li>
+        {% assign talk_title = talk.title | strip %}
+        {% if talk_title != "" %}
         {{ talk.title }}
-        {% if talk.speakers %}
+        {% elsif talk.speakers %}
+        {% for speaker in talk.speakers %}{% unless forloop.first %}, {% endunless %}{% include speaker_name.html speaker=speaker %}{% endfor %}
+        {% endif %}
+        {% if talk.speakers and talk_title != "" %}
         &mdash;
-        {% for speaker in talk.speakers %}{% unless forloop.first %}, {% endunless %}{% assign person_slug = speaker.name | downcase | replace: " ", "-" %}<a href="/people/{{ person_slug }}/">{{ speaker.name }}</a>{% if speaker.company %} (<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>){% endif %}{% endfor %}
+        {% for speaker in talk.speakers %}{% unless forloop.first %}, {% endunless %}{% include speaker_name.html speaker=speaker %}{% if speaker.company %} (<a href="/companies/{{ speaker.company | downcase | replace: " ", "-" }}/">{{ speaker.company }}</a>){% endif %}{% endfor %}
         {% endif %}
       </li>
       {% endfor %}

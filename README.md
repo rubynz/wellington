@@ -58,7 +58,7 @@ We rely heavily on event frontmatter metadata to build a catalog of meetups, spe
 | Field | Type | Description |
 |---|---|---|
 | `talks` | array | List of talks |
-| `talks[].title` | string | Talk title |
+| `talks[].title` | string | Talk title; when omitted, only speaker name(s) are shown on the meetup page |
 | `talks[].description` | markdown string | Talk description |
 | `talks[].speakers` | array | List of `{name, title, company}` |
 | `talks[].recording_url` | string | YouTube URL for the talk recording |

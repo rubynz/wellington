@@ -1,15 +1,21 @@
 {% assign talk = include.talk %}
+{% assign talk_title = talk.title | strip %}
 <div class="content talk-card">
+  {% if talk_title != "" %}
   <h3 class="talk-title">{{ talk.title }}</h3>
+  {% elsif talk.speakers %}
+  <h3 class="talk-title">
+    {% for speaker in talk.speakers %}{% unless forloop.first %}, {% endunless %}{% include speaker_name.html speaker=speaker %}{% endfor %}
+  </h3>
+  {% endif %}
 
-  {% if talk.speakers %}
+  {% if talk.speakers and talk_title != "" %}
   <div class="talk-speakers">
     {% if talk.speakers.size > 1 %}<ul>{% endif %}
       {% for speaker in talk.speakers %}
       {% if talk.speakers.size > 1 %}<li>{% endif %}
       <span class="speaker">
-        {% assign person_slug = speaker.name | downcase | replace: " ", "-" %}
-        <a href="/people/{{ person_slug }}/" class="speaker-name">{{ speaker.name }}</a>
+        {% include speaker_name.html speaker=speaker %}
         {% if speaker.title or speaker.company %}
         <span class="speaker-role">
           —

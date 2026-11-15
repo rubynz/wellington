@@ -1,0 +1,3 @@
+{% assign speaker = include.speaker %}
+{% assign person_page = site.pages | where: "person_name", speaker.name | first %}
+{% if person_page %}<a href="{{ person_page.url }}" class="speaker-name">{{ speaker.name }}</a>{% else %}{{ speaker.name }}{% endif %}

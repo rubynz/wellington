@@ -9,7 +9,8 @@ layout: default
   <ul class="person-talks">
     {% for item in page.talks %}
     <li>
-      <a href="{{ item.event.url }}">{{ item.talk.title }}</a>
+      {% assign talk_title = item.talk.title | strip %}
+      <a href="{{ item.event.url }}">{% if talk_title != "" %}{{ item.talk.title }}{% else %}Untitled talk{% endif %}</a>
       <span class="date">&mdash; {{ item.event.date | date: "%A, %b %-d, %Y" }}</span>
     </li>
     {% endfor %}
